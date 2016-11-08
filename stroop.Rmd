@@ -1,6 +1,7 @@
 ---
-title: 'The Science of Decisions'
-output: html_document
+title: "The Science of Decisions"
+output: pdf_document
+sansfont: Calibri Light
 ---
 
 ```{r setup, include=FALSE}
@@ -9,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Background
 
-In a Stroop task, participants are presented with a list of words, with each word displayed in a color of ink. The participant’s task is to say out loud the color of the ink in which the word is printed. The task has two conditions: a congruent words condition, and an incongruent words condition. In the congruent words condition, the words being displayed are color words whose names match the colors in which they are printed: for example <span style="color:red">RED</span>, <span style="color:blue">BLUE</span>. In the incongruent words condition, the words displayed are color words whose names do not match the colors in which they are printed: for example <span style="color:green">PURPLE</span>, <span style="color:purple">ORANGE</span>. In each case, we measure the time it takes to name the ink colors in equally-sized lists. Each participant will go through and record a time from each condition.
+In a Stroop task, participants are presented with a list of words, with each word displayed in a color of ink. The participant’s task is to say out loud the color of the ink in which the word is printed. The task has two conditions: a congruent words condition, and an incongruent words condition. In the congruent words condition, the words being displayed are color words whose names match the colors in which they are printed: for example \textcolor{red}{RED}, \textcolor{blue}{BLUE}. In the incongruent words condition, the words displayed are color words whose names do not match the colors in which they are printed: for example \textcolor{green}{PURPLE}, \textcolor{magenta}{ORANGE}. In each case, we measure the time it takes to name the ink colors in equally-sized lists. Each participant will go through and record a time from each condition. 
 
 ## Hypotheses
 
@@ -18,7 +19,8 @@ Independent variable: condition - congruent or incongruent
 Dependent variable: time it takes to name the ink colors
 
 
-$H_0$: There is no difference in the time it takes to name ink colors in the congruent list vs incongruent list, d = 0.
+$H_0$: There is no difference in the time it takes to name ink colors in the congruent list vs incongruent list,    
+    d = 0.
 
 $H_A$: The time to name the ink colors for the incongruent list is greater than the congruent list, d > 0.
 
@@ -47,25 +49,27 @@ sd(stroop$Incongruent)
 ```
 
 
+
+\pagebreak
 Plots to look at the distribution of the data
 ```{r}
 # congruent histogram
 ggplot(data=stroop, aes(stroop$Congruent)) + 
   geom_histogram(col="black",fill="#6ed3cf",breaks=seq(8, 36, by = 2)) +
-  labs(title="Histogram for Congruent") +
+  labs(title="Histogram for Congruent Condition") +
   labs(x="Congruent", y="Count")
 
 ```
-
+\pagebreak
 ```{r}
 # incongruent histogram
 ggplot(data=stroop, aes(stroop$Incongruent)) + 
   geom_histogram(col="black",fill="#9068be",breaks=seq(8, 36, by = 2)) +
-  labs(title="Histogram for Incongruent") +
+  labs(title="Histogram for Incongruent Condition") +
   labs(x="Incongruent", y="Count")
 ```
 
-
+\pagebreak
 ```{r}
 # transform data to produce boxplot
 congruent <- data.frame(time=stroop$Congruent, condition="Congruent")
@@ -81,6 +85,8 @@ ggplot(aes(x=condition, y=time), data=stroop2) +
 
 The congruent and incongruent histograms show that the data is approximately normally distributed. From the side-by-side box plot we can see that there appears to be a considerable difference in times between the two conditions. Both the incongruent histogram and boxplot show two potential outliers. However, due to the nature of the incongruent condition it seems likely that these are legitimate observations.
 
+\pagebreak
+
 ## Perform Paired T-Test
 
 A paired t-test was chosen to distinguish the proposed hypotheses because the data has matched pairs, meaning that a single subject performed both the congruent and incongruent tasks. Before performing the t-test we must check that the data meets the assumptions of a paired t-test. 
@@ -95,6 +101,8 @@ hist(stroop$diff,breaks=12,col="gray",main="Histogram of time differences",
 qqnorm(stroop$diff)
 qqline(stroop$diff)
 ```
+
+\pagebreak
 
 First we'll calculate the t statistic by hand using this formula:
 
@@ -140,6 +148,8 @@ upper
 ```
 
 Our confidence interval ranges from a lower bound of 5.91 to an upper bound of 10.02. Therefore, we are 95% confident that the true difference in congruent and incongruent times is between 5.91 and 10.02.
+
+\pagebreak
 
 Lastly we will perform the paired t-test using R functions.
 ```{r}
