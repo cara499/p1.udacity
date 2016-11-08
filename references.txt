@@ -1,0 +1,5 @@
+http://t-redactyl.io/blog/2016/04/creating-plots-in-r-using-ggplot2-part-10-boxplots.html
+https://www.datacamp.com/community/tutorials/make-histogram-ggplot2#gs.TgXweuk
+https://www.r-bloggers.com/paired-students-t-test/
+http://stattrek.com/hypothesis-test/paired-means.aspx?Tutorial=AP
+https://www4.uwsp.edu/psych/cw/statistics/Wendorf-ReportingStatistics.pdf
